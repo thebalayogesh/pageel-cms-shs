@@ -52,6 +52,12 @@
       "columnWidths": {
         "__name__": 35
       }
+    },
+    {
+      "id": "blog",
+      "name": "Blog",
+      "postsPath": "blog",
+      "imagesPath": "images/blog"
     }
   ],
   "activeCollectionId": "collection-1778409371406",
