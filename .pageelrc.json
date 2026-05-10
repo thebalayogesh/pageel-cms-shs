@@ -57,10 +57,50 @@
       "id": "blog",
       "name": "Blog",
       "postsPath": "blog",
-      "imagesPath": "images/blog"
+      "imagesPath": "images/blog",
+      "template": {
+        "fields": [
+          {
+            "name": "publishDate",
+            "type": "date"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "author",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "type": "array"
+          },
+          {
+            "name": "metadata",
+            "type": "object"
+          }
+        ]
+      },
+      "tableColumns": [],
+      "columnWidths": {
+        "__name__": 35
+      }
     }
   ],
-  "activeCollectionId": "collection-1778409371406",
+  "activeCollectionId": "blog",
   "settings": {
     "projectType": "github",
     "postFileTypes": ".md,.mdx",
