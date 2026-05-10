@@ -1,53 +1,74 @@
-media_folder: "media"
-public_folder: "/media"
-
-collections:
+media: media
+content:
   - name: pages
     label: Pages
     type: collection
     path: docs
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "rich-text" }
+      - name: title
+        label: Title
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
 
   - name: products
     label: Products
-    label_singular: Product
-    folder: docs/products
-    extension: md
-    format: frontmatter
-    create: true
-    slug: "{{slug}}"
+    type: collection
+    path: docs/products
+    # Pages CMS uses 'filename' for the naming pattern
+    filename: "{{title}}"
     fields:
-      - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "number", value_type: "float", min: 0 }
-      - { label: "Main Description", name: "body", widget: "markdown" }
-      
-      - label: "Super Features"
-        name: "super_features"
-        widget: "list"
-        collapsed: false
-        hint: "Prominent highlights with descriptions."
-        fields:
-          - { label: "Feature Heading", name: "heading", widget: "string" }
-          - { label: "Supporting Text", name: "text", widget: "text" }
+      - name: title
+        label: Product Name
+        type: string
 
-      - label: "Standard Features"
-        name: "features"
-        widget: "list"
-        summary: "{{fields.feature_item}}"
-        field: { label: "Feature", name: "feature_item", widget: "string" }
+      - name: price
+        label: Price
+        type: number
+        # Helps with decimal points for currency
+        step: 0.01
 
-      - label: "Specifications"
-        name: "specifications"
-        widget: "object"
+      - name: description
+        label: Description
+        type: rich-text
+
+      - name: super_features
+        label: Super Features (Highlights)
+        type: list
+        # Object type allows for a title + description per highlight
         fields:
-          - { label: "Material", name: "material", widget: "string", required: false }
-          - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
-          - { label: "Weight", name: "weight", widget: "string", required: false }
-          - { label: "Technical Notes", name: "notes", widget: "text", required: false }
-          
-      - label: "Product Images"
-        name: "gallery"
-        widget: "list"
-        field: { label: "Image", name: "image", widget: "image" }
+          - name: feature_title
+            label: Feature Title
+            type: string
+          - name: feature_description
+            label: Feature Description
+            type: string
+
+      - name: features
+        label: General Features
+        type: list
+        # Simple list of strings
+        field:
+          type: string
+
+      - name: specifications
+        label: Specifications
+        type: object
+        fields:
+          - name: material
+            label: Material
+            type: string
+          - name: dimensions
+            label: Dimensions
+            type: string
+          - name: weight
+            label: Weight
+            type: string
+          - name: manufacturer
+            label: Manufacturer
+            type: string
+
+      - name: product_image
+        label: Product Image
+        type: image
